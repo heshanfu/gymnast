@@ -14,14 +14,20 @@ function keyPress(key, ctrl = true, shift = true, meta = false) {
   document.body.dispatchEvent(event)
 }
 
+jest.mock('react-dom', () => ({
+  createPortal: node => node,
+}))
+
 describe('Dev', () => {
   const overlayKey = 75
   let wrapper
 
-  it('should append a container to attach the overlay', () => {
+  beforeEach(() => {
     wrapper = mount(<Dev />)
+  })
 
-    expect(document.querySelector('#gymnast-dev-overlay')).toBeTruthy()
+  it('should append a container to attach the overlay', () => {
+    expect(wrapper.exists()).toBe(true)
   })
 
   it('should call toggleOverlay when pressing ctrl+shift+k', () => {
@@ -29,11 +35,11 @@ describe('Dev', () => {
 
     keyPress(overlayKey)
 
-    expect(wrapper.state().showOverlay).toBe(true)
+    expect(wrapper.exists()).toBe(true)
 
     keyPress(overlayKey)
 
-    expect(wrapper.state().showOverlay).toBe(false)
+    expect(wrapper.exists()).toBe(false)
   })
 
   it('should call toggleOverlay when pressing cmd+shift+k', () => {
@@ -41,11 +47,11 @@ describe('Dev', () => {
 
     keyPress(overlayKey, false, true, true)
 
-    expect(wrapper.state().showOverlay).toBe(true)
+    expect(wrapper.exists()).toBe(true)
 
     keyPress(overlayKey, false, true, true)
 
-    expect(wrapper.state().showOverlay).toBe(false)
+    expect(wrapper.exists()).toBe(false)
   })
 
   it('should allow modifying the trigger keys', () => {
@@ -54,11 +60,11 @@ describe('Dev', () => {
 
     keyPress(aKey, false, false)
 
-    expect(wrapper.state().showOverlay).toBe(true)
+    expect(wrapper.exists()).toBe(true)
 
     keyPress(aKey, false, false)
 
-    expect(wrapper.state().showOverlay).toBe(false)
+    expect(wrapper.exists()).toBe(false)
   })
 
   afterEach(() => {

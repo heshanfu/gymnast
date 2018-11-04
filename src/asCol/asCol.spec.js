@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import log from '../log'
 import asCol from './index'
 
-describe('Col', () => {
+describe('asCol', () => {
   let wrapper
   const Col = asCol('div')
 

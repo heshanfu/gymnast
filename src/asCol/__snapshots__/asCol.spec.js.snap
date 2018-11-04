@@ -74,3 +74,23 @@ Object {
   },
 }
 `;
+
+exports[`asCol should override defaults when passing margin prop 1`] = `
+Object {
+  "margin": 1,
+  "show": undefined,
+}
+`;
+
+exports[`asCol should render a Grid with col margins ([0, 1.5, 3]) 1`] = `
+Object {
+  "className": "{\\"border\\":\\"0 transparent solid\\",\\"boxSizing\\":\\"border-box\\",\\"display\\":\\"flex\\",\\"flexFlow\\":\\"row wrap\\",\\"width\\":\\"100%\\"} {\\"flexGrow\\":1}",
+  "show": undefined,
+  "style": Object {
+    "borderBottomWidth": 24,
+    "borderLeftWidth": 12,
+    "borderRightWidth": 12,
+    "borderTopWidth": 0,
+  },
+}
+`;
